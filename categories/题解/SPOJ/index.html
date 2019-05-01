@@ -316,10 +316,10 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       <p><a href="https://www.spoj.com/problems/SUMFOUR/" target="_blank" rel="noopener">原题目链接</a></p>
-<p>首先想到$\Theta(n^4)$的暴力枚举，但$n\le 4000$显然不行。</p>
+<p>首先想到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Θ</mi><mo>(</mo><msup><mi>n</mi><mn>4</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">\Theta(n^4)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord">Θ</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的暴力枚举，但<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>≤</mo><mn>4000</mn></mrow><annotation encoding="application/x-tex">n\le 4000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span>显然不行。</p>
 <p>考虑先预处理出c数组和d数组的和，再暴力计算答案。</p>
 <p>由于c数组和d数组的和可能会有重复，排序后使用二分来降低时间复杂度</p>
-<p>最终时间复杂度$\Theta (n^2\log n)$</p>
+<p>最终时间复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Θ</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\Theta (n^2\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord">Θ</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
       
         <div class="readmore">
           <a href="/2019/04/23/solution-sp1296/" class="flat-box">
@@ -429,11 +429,11 @@
 <p>例如这组数据</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">4-9</span><br><span class="line">| |</span><br><span class="line">2-4-10</span><br></pre></td></tr></table></figure>
 <p>从4开始，到10结束</p>
-<p><code>dfs</code>会走$4 \to 2 \to 4 \to 10$，答案为8</p>
-<p>然而很明显走$4 \to 9 \to 4 \to 10$更优，答案为6</p>
+<p><code>dfs</code>会走<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>4</mn><mo>→</mo><mn>2</mn><mo>→</mo><mn>4</mn><mo>→</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">4 \to 2 \to 4 \to 10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span>，答案为8</p>
+<p>然而很明显走<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>4</mn><mo>→</mo><mn>9</mn><mo>→</mo><mn>4</mn><mo>→</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">4 \to 9 \to 4 \to 10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span>更优，答案为6</p>
 <p>当然你加一大堆玄学优化也是可以搜出正确答案的</p>
 <p>这里不再多讲，而是提供另一种思路：</p>
-<h1 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h1>
+<h1 id="二分"><a class="markdownIt-Anchor" href="#二分"></a> 二分</h1>
       
         <div class="readmore">
           <a href="/2019/03/13/solution-sp733/" class="flat-box">
@@ -690,7 +690,7 @@
 <footer id="footer" class="clearfix">
   
     <div class="footer">
-      <p>在互联网浩瀚的信息海洋中，有一个偏僻的角落，在这个角落里，也有一个偏僻的角落，… …就在一个最深层偏僻角落里，<del>我的blog搭好了</del>。——《三体II·黑暗森林》</p>
+      <p>在互联网浩瀚的信息海洋中，有一个偏僻的角落，在这个角落里，也有一个偏僻的角落，… …就在一个最深层偏僻角落里，<s>我的blog搭好了</s>。——《三体II·黑暗森林》</p>
 
     </div>
   
