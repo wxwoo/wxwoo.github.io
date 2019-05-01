@@ -934,8 +934,10 @@
   <script>setLoadingBarProgress(100);</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
+        jax: ["input/Tex", "output/HTML-CSS"]，
         tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            inlineMath: [ ["$","$"],
+            displayMath: [ ['$','$'],
             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
             processEscapes: true
         }
