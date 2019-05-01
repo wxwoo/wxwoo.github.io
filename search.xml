@@ -179,33 +179,6 @@
     
     
     <entry>
-      <title>CF1108A Two distinct points 题解</title>
-      <link href="/2019/03/13/solution-cf1108a/"/>
-      <url>/2019/03/13/solution-cf1108a/</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://codeforces.com/problemset/problem/1108/A" target="_blank" rel="noopener">原题目链接</a></p><p>我们可以取两条线段的中点，若重合就让第二条线段的中点+1</p><p><code>Q:</code>中点+1后不在线段上怎么办？</p><p><code>A:</code>由于<code>C++</code>整数除法自动省略小数，也就是向下取整，若线段长度为1，即<code>l+1=r</code>，那么$\left\lfloor\dfrac{l+r}{2}\right\rfloor=l$，所以<code>中点+1=r</code>，不会超出线段</p><a id="more"></a><p>代码如下</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> &amp;x)</span><span class="comment">//快读，写不写无所谓</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">char</span> ch;</span><br><span class="line"><span class="keyword">int</span> f=<span class="number">1</span>;</span><br><span class="line">x=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span>(ch==<span class="string">'-'</span>)</span><br><span class="line">f=<span class="number">-1</span>;</span><br><span class="line">ch=getchar();</span><br><span class="line">&#125;<span class="keyword">while</span>(!(<span class="string">'0'</span>&lt;=ch&amp;&amp;ch&lt;=<span class="string">'9'</span>));</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line">x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch<span class="number">-48</span>;</span><br><span class="line">ch=getchar();</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="string">'0'</span>&lt;=ch&amp;&amp;ch&lt;=<span class="string">'9'</span>);</span><br><span class="line">x*=f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> q;</span><br><span class="line">read(q);<span class="comment">//读入q</span></span><br><span class="line"><span class="keyword">while</span>(q--)<span class="comment">//循环q次，可换成for(int i=1;i&lt;=q;i++)</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">int</span> l1,r1,l2,r2;</span><br><span class="line">read(l1);</span><br><span class="line">read(r1);</span><br><span class="line">read(l2);</span><br><span class="line">read(r2);<span class="comment">//读入l1,r1,l2,r2</span></span><br><span class="line">        <span class="keyword">int</span> a=(l1+r1)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> b=(l2+r2)/<span class="number">2</span>;<span class="comment">//取两条线段的中点</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,a,(a==b?b+<span class="number">1</span>:b));<span class="comment">//若相等，输出b+1，反之输出b</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 题解 </category>
-          
-          <category> codeforces </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 模拟 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>P2598 [ZJOI2009]狼和羊的故事 题解</title>
       <link href="/2019/03/13/solution-p2598/"/>
       <url>/2019/03/13/solution-p2598/</url>
@@ -225,6 +198,33 @@
         <tags>
             
             <tag> 网络流 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CF1108A Two distinct points 题解</title>
+      <link href="/2019/03/13/solution-cf1108a/"/>
+      <url>/2019/03/13/solution-cf1108a/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://codeforces.com/problemset/problem/1108/A" target="_blank" rel="noopener">原题目链接</a></p><p>我们可以取两条线段的中点，若重合就让第二条线段的中点+1</p><p><code>Q:</code>中点+1后不在线段上怎么办？</p><p><code>A:</code>由于<code>C++</code>整数除法自动省略小数，也就是向下取整，若线段长度为1，即<code>l+1=r</code>，那么$\left\lfloor\dfrac{l+r}{2}\right\rfloor=l$，所以<code>中点+1=r</code>，不会超出线段</p><a id="more"></a><p>代码如下</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> &amp;x)</span><span class="comment">//快读，写不写无所谓</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">char</span> ch;</span><br><span class="line"><span class="keyword">int</span> f=<span class="number">1</span>;</span><br><span class="line">x=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span>(ch==<span class="string">'-'</span>)</span><br><span class="line">f=<span class="number">-1</span>;</span><br><span class="line">ch=getchar();</span><br><span class="line">&#125;<span class="keyword">while</span>(!(<span class="string">'0'</span>&lt;=ch&amp;&amp;ch&lt;=<span class="string">'9'</span>));</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line">x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch<span class="number">-48</span>;</span><br><span class="line">ch=getchar();</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="string">'0'</span>&lt;=ch&amp;&amp;ch&lt;=<span class="string">'9'</span>);</span><br><span class="line">x*=f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> q;</span><br><span class="line">read(q);<span class="comment">//读入q</span></span><br><span class="line"><span class="keyword">while</span>(q--)<span class="comment">//循环q次，可换成for(int i=1;i&lt;=q;i++)</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">int</span> l1,r1,l2,r2;</span><br><span class="line">read(l1);</span><br><span class="line">read(r1);</span><br><span class="line">read(l2);</span><br><span class="line">read(r2);<span class="comment">//读入l1,r1,l2,r2</span></span><br><span class="line">        <span class="keyword">int</span> a=(l1+r1)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> b=(l2+r2)/<span class="number">2</span>;<span class="comment">//取两条线段的中点</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,a,(a==b?b+<span class="number">1</span>:b));<span class="comment">//若相等，输出b+1，反之输出b</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+          <category> codeforces </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 模拟 </tag>
             
         </tags>
       
