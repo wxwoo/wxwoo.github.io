@@ -327,17 +327,12 @@
 <p>我们将合影和人都看成一个点，然后如下建边：</p>
 <blockquote>
 <ol>
-<li>原点向合影连流量为利润的边</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol>
-<li>人向汇点连流量为花费的边</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol>
-<li>每个合影向需要的人连流量为inf的边</li>
+<li><p>原点向合影连流量为利润的边</p>
+</li>
+<li><p>人向汇点连流量为花费的边</p>
+</li>
+<li><p>每个合影向需要的人连流量为inf的边</p>
+</li>
 </ol>
 </blockquote>
 <p>接下来我们思考这样建边的正确性</p>
@@ -973,6 +968,22 @@
 
 
 
-  <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script>setLoadingBarProgress(100);</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

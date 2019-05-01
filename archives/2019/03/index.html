@@ -678,8 +678,8 @@
       
         
   <h2 class="title">
-    <a href="/2019/03/13/solution-sp733/">
-      SP733 MTWALK - Mountain Walking 题解
+    <a href="/2019/03/13/solution-p3965/">
+      P3965 [TJOI2013]循环格 题解
     </a>
   </h2>
 
@@ -717,9 +717,9 @@
             
   
   <div class="new-meta-item category">
-    <a href="/categories/题解/SPOJ/" rel="nofollow">
+    <a href="/categories/题解/洛谷/" rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>题解&nbsp;/&nbsp;SPOJ</p>
+      <p>题解&nbsp;/&nbsp;洛谷</p>
     </a>
   </div>
 
@@ -746,20 +746,23 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p><a href="https://www.spoj.com/problems/MTWALK/" target="_blank" rel="noopener">原题目链接</a></p>
-<p>看到题目就想到了<code>dfs+剪枝</code></p>
-<p>然后就想到了<code>dfs</code>有问题</p>
-<p>例如这组数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">4-9</span><br><span class="line">| |</span><br><span class="line">2-4-10</span><br></pre></td></tr></table></figure>
-<p>从4开始，到10结束</p>
-<p><code>dfs</code>会走$4 \to 2 \to 4 \to 10$，答案为8</p>
-<p>然而很明显走$4 \to 9 \to 4 \to 10$更优，答案为6</p>
-<p>当然你加一大堆玄学优化也是可以搜出正确答案的</p>
-<p>这里不再多讲，而是提供另一种思路：</p>
-<h1 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h1>
+      <p><a href="https://www.luogu.org/problemnew/show/P3965" target="_blank" rel="noopener">原题目链接</a></p>
+<p><del>洛谷随机跳题跳到的</del></p>
+<p>有指向，有修改，求最小：<del>明显的</del>最小费用最大流</p>
+<p>我们将每个格子看成一个点，然后拆点，如下建边：</p>
+<blockquote>
+<ol>
+<li><p>原点向每个点连边，流量为1，费用为0</p>
+</li>
+<li><p>每个点的拆点向汇点连边，流量为1，费用为0</p>
+</li>
+<li><p>每个点向四周的点连边，流量为1，默认指向费用为0，其他为1</p>
+</li>
+</ol>
+</blockquote>
       
         <div class="readmore">
-          <a href="/2019/03/13/solution-sp733/" class="flat-box">
+          <a href="/2019/03/13/solution-p3965/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             阅读全文
           </a>
@@ -769,7 +772,7 @@
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/二分/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>二分</a>
+          <a href="/tags/网络流/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>网络流</a>
         
       </div>
     
@@ -866,17 +869,12 @@
 <p>我们将每个格子看成一个点，然后如下建边：</p>
 <blockquote>
 <ol>
-<li>原点向狼的领地连流量为inf的边</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol>
-<li>羊的领地向汇点连流量为inf的边</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol>
-<li>每个格子向上下左右四个格子连流量为1的边</li>
+<li><p>原点向狼的领地连流量为inf的边</p>
+</li>
+<li><p>羊的领地向汇点连流量为inf的边</p>
+</li>
+<li><p>每个格子向上下左右四个格子连流量为1的边</p>
+</li>
 </ol>
 </blockquote>
       
@@ -1021,8 +1019,8 @@
       
         
   <h2 class="title">
-    <a href="/2019/03/13/solution-p3965/">
-      P3965 [TJOI2013]循环格 题解
+    <a href="/2019/03/13/solution-sp733/">
+      SP733 MTWALK - Mountain Walking 题解
     </a>
   </h2>
 
@@ -1060,9 +1058,9 @@
             
   
   <div class="new-meta-item category">
-    <a href="/categories/题解/洛谷/" rel="nofollow">
+    <a href="/categories/题解/SPOJ/" rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>题解&nbsp;/&nbsp;洛谷</p>
+      <p>题解&nbsp;/&nbsp;SPOJ</p>
     </a>
   </div>
 
@@ -1089,28 +1087,20 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p><a href="https://www.luogu.org/problemnew/show/P3965" target="_blank" rel="noopener">原题目链接</a></p>
-<p><del>洛谷随机跳题跳到的</del></p>
-<p>有指向，有修改，求最小：<del>明显的</del>最小费用最大流</p>
-<p>我们将每个格子看成一个点，然后拆点，如下建边：</p>
-<blockquote>
-<ol>
-<li>原点向每个点连边，流量为1，费用为0</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol>
-<li>每个点的拆点向汇点连边，流量为1，费用为0</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol>
-<li>每个点向四周的点连边，流量为1，默认指向费用为0，其他为1</li>
-</ol>
-</blockquote>
+      <p><a href="https://www.spoj.com/problems/MTWALK/" target="_blank" rel="noopener">原题目链接</a></p>
+<p>看到题目就想到了<code>dfs+剪枝</code></p>
+<p>然后就想到了<code>dfs</code>有问题</p>
+<p>例如这组数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">4-9</span><br><span class="line">| |</span><br><span class="line">2-4-10</span><br></pre></td></tr></table></figure>
+<p>从4开始，到10结束</p>
+<p><code>dfs</code>会走$4 \to 2 \to 4 \to 10$，答案为8</p>
+<p>然而很明显走$4 \to 9 \to 4 \to 10$更优，答案为6</p>
+<p>当然你加一大堆玄学优化也是可以搜出正确答案的</p>
+<p>这里不再多讲，而是提供另一种思路：</p>
+<h1 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h1>
       
         <div class="readmore">
-          <a href="/2019/03/13/solution-p3965/" class="flat-box">
+          <a href="/2019/03/13/solution-sp733/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             阅读全文
           </a>
@@ -1120,7 +1110,7 @@
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/网络流/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>网络流</a>
+          <a href="/tags/二分/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>二分</a>
         
       </div>
     
@@ -1821,6 +1811,22 @@
 
 
 
-  <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script>setLoadingBarProgress(100);</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

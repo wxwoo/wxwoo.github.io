@@ -426,17 +426,12 @@
 <p>我们将每个人看成一个点，然后如下建边：</p>
 <blockquote>
 <ol>
-<li>原点向每个人连流量为其总收益的边（即$\sum\limits_{j=1}^n E_{i,j}$）</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol>
-<li>每个人向汇点连流量为其花费的边</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol>
-<li><code>i</code>向<code>j</code>连流量为$E_{i,j} \times 2$的边</li>
+<li><p>原点向每个人连流量为其总收益的边（即$\sum\limits_{j=1}^n E_{i,j}$）</p>
+</li>
+<li><p>每个人向汇点连流量为其花费的边</p>
+</li>
+<li><p><code>i</code>向<code>j</code>连流量为$E_{i,j} \times 2$的边</p>
+</li>
 </ol>
 </blockquote>
       
@@ -954,6 +949,22 @@
 
 
 
-  <script>setLoadingBarProgress(100);</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script>setLoadingBarProgress(100);</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
