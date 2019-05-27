@@ -48,9 +48,20 @@
     function setLoadingBarProgress(num) {
       document.getElementById('loading-bar').style.width=num+"%";
     }
-  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </script>
 
   
+  
+    <!-- ba -->
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?934b608552";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 </head>
 <body>
@@ -226,9 +237,114 @@
         
           
         
+          
+        
       
     
     
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2019/05/15/mathjax-renderer-optimization/">
+      mathjax数学公式渲染优化
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://wxwoo.github.io" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>wxwoo</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-05-15</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>在使用hexo博客和material-x等博客主题时，难免会遇到mathjax数学公式与markdown渲染冲突的问题。</p>
+<p>xaoxuu给出了解决方案，只需在<code>_config.yml</code>里加入<code>mathjax: true</code>即可解决，可以解决大量的mathjax冲突问题，但仍有部分复杂的公式渲染出现问题。</p>
+<p>我在这里给出一种解决方案。</p>
+<p>_注：部分资料来自互联网_</p>
+      
+        <div class="readmore">
+          <a href="/2019/05/15/mathjax-renderer-optimization/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/mathjax/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>mathjax</a>
+        
+          <a href="/tags/hexo/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>hexo</a>
+        
+          <a href="/tags/material-x/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>material-x</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class="post-wrapper">
@@ -372,9 +488,9 @@
       <div class="text">
         
         
+          <p>山重水复疑无路，柳暗花明又一村。</p>
+
         
-          <p><span id="jinrishici-sentence">山重水复疑无路，柳暗花明又一村。</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
         
       </div>
     
@@ -405,6 +521,14 @@
     
   </div>
 </section>
+
+          
+        
+      
+        
+          
+          
+            
 
           
         
@@ -546,7 +670,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/二分/" style="font-size: 14px; color: #999">二分</a> <a href="/tags/模拟/" style="font-size: 24px; color: #555">模拟</a> <a href="/tags/网络流/" style="font-size: 19px; color: #777">网络流</a>
+      <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/material-x/" style="font-size: 14px; color: #999">material-x</a> <a href="/tags/mathjax/" style="font-size: 14px; color: #999">mathjax</a> <a href="/tags/二分/" style="font-size: 17.33px; color: #828282">二分</a> <a href="/tags/模拟/" style="font-size: 24px; color: #555">模拟</a> <a href="/tags/网络流/" style="font-size: 20.67px; color: #6c6c6c">网络流</a>
     </div>
   </section>
 
@@ -867,8 +991,7 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<link rel="dns-prefetch" href="//cdn.mathjax.org" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
