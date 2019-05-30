@@ -319,7 +319,7 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           <p>在使用hexo博客和material-x等博客主题时，难免会遇到mathjax数学公式与markdown渲染冲突的问题。</p>
-<p>xaoxuu给出了解决方案，只需在<code>_config.yml</code>里加入<code>mathjax: true</code>即可解决，可以解决大量的mathjax冲突问题，但仍有部分复杂的公式渲染出现问题。</p>
+<p>xaoxuu给出了解决方案，只需在<code>_config.yml</code>里加入<code>mathjax: true</code>即可解决，可以解决大量的mathjax公式渲染，但仍有部分复杂的公式渲染出现问题。</p>
 <p>我在这里给出一种解决方案。</p>
 <p><em>注：部分资料来自互联网</em></p>
 <a id="more"></a>
@@ -329,12 +329,14 @@
 <h2 id="2-更改配置"><a href="#2-更改配置" class="headerlink" title="2. 更改配置"></a>2. 更改配置</h2><p>找到<code>/node_modules/hexo-renderer-kramed/lib/renderer.js</code>，将<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatText</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Fit kramed's rule:  $$ + \1 + $$ </span></span><br><span class="line">    <span class="keyword">return</span> text.replace(<span class="regexp">/`\ $(.*?)\$ `/g</span>, <span class="string">' $$$$$ 1 $$$$ '</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>改为<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatText</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> text;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="3-修改数学包"><a href="#3-修改数学包" class="headerlink" title="3. 修改数学包"></a>3. 修改数学包</h2><p>在cmd中输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-math --save</span><br><span class="line">npm install hexo-renderer-mathjax --save</span><br></pre></td></tr></table></figure></p>
-<h2 id="4-更新mathjax配置文件"><a href="#4-更新mathjax配置文件" class="headerlink" title="4. 更新mathjax配置文件"></a>4. 更新mathjax配置文件</h2><p>找到<code>/node_modules/hexo-renderer-mathjax/mathjax.html</code>，将最下面那一行<code>&lt;script&gt;</code>注释掉，改成<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="4-更新mathjax配置文件"><a href="#4-更新mathjax配置文件" class="headerlink" title="4. 更新mathjax配置文件"></a>4. 更新mathjax配置文件</h2><p>找到<code>/node_modules/hexo-renderer-mathjax/mathjax.html</code>，将最下面那一行<code>&lt;script&gt;</code>注释掉，改成<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLCSS"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="5-修改转义规则"><a href="#5-修改转义规则" class="headerlink" title="5. 修改转义规则"></a>5. 修改转义规则</h2><p>因为markdown和mathjax语法有冲突，我们修改转义规则以避免冲突</p>
 <p>找到<code>\node_modules\kramed\lib\rules\inline.js</code>，将<code>escape</code>和<code>em</code>这两行注释掉，改成</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">escape</span>: <span class="regexp">/^\\([`*\[\]()# +\-.!_&gt;])/</span>,</span><br><span class="line"></span><br><span class="line">em: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br></pre></td></tr></table></figure>
 <h2 id="6-开始使用"><a href="#6-开始使用" class="headerlink" title="6. 开始使用"></a>6. 开始使用</h2><p>找到<code>\_config.yml</code>，加上一行<code>mathjax: true</code>就可以了</p>
-<h1 id="mathjax渲染优化"><a href="#mathjax渲染优化" class="headerlink" title="mathjax渲染优化"></a>mathjax渲染优化</h1>
+<h1 id="mathjax渲染优化"><a href="#mathjax渲染优化" class="headerlink" title="mathjax渲染优化"></a>mathjax渲染优化</h1><p>打开<code>/node_modules/hexo-renderer-mathjax/mathjax.html</code></p>
+<p>（待填坑</p>
+
         </div>
         
           
@@ -345,10 +347,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-27T18:23:38+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-30T18:30:31+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2019年5月27日</p>
+    <p>最后更新于 2019年5月30日</p>
   </a>
 </div>
 
@@ -374,6 +376,25 @@
         
         
             <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/2019/05/27/solution-sp3978/" rel="prev" title="SP3978 DISQUERY - Distance Query 题解">
+                                  
+                                      SP3978 DISQUERY - Distance Query 题解
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/树链剖分/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>树链剖分</a> <a class="tag" href="/tags/ST表/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>ST表</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
                 
                 
                     <section class="next">
@@ -623,11 +644,11 @@
         
           <li><a class="flat-box" title="/categories/题解/" href="/categories/题解/"><div class="name">题解</div><div class="badge">(11)</div></a></li>
         
-          <li><a class="flat-box child" title="/categories/题解/SPOJ/" href="/categories/题解/SPOJ/"><div class="name">SPOJ</div><div class="badge">(2)</div></a></li>
+          <li><a class="flat-box child" title="/categories/题解/SPOJ/" href="/categories/题解/SPOJ/"><div class="name">SPOJ</div><div class="badge">(3)</div></a></li>
         
           <li><a class="flat-box child" title="/categories/题解/codeforces/" href="/categories/题解/codeforces/"><div class="name">codeforces</div><div class="badge">(3)</div></a></li>
         
-          <li><a class="flat-box child" title="/categories/题解/洛谷/" href="/categories/题解/洛谷/"><div class="name">洛谷</div><div class="badge">(6)</div></a></li>
+          <li><a class="flat-box child" title="/categories/题解/洛谷/" href="/categories/题解/洛谷/"><div class="name">洛谷</div><div class="badge">(5)</div></a></li>
         
       </ul>
     </div>
@@ -652,7 +673,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/material-x/" style="font-size: 14px; color: #999">material-x</a> <a href="/tags/mathjax/" style="font-size: 14px; color: #999">mathjax</a> <a href="/tags/二分/" style="font-size: 17.33px; color: #828282">二分</a> <a href="/tags/模拟/" style="font-size: 24px; color: #555">模拟</a> <a href="/tags/网络流/" style="font-size: 20.67px; color: #6c6c6c">网络流</a>
+      <a href="/tags/ST表/" style="font-size: 14px; color: #999">ST表</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/material-x/" style="font-size: 14px; color: #999">material-x</a> <a href="/tags/mathjax/" style="font-size: 14px; color: #999">mathjax</a> <a href="/tags/二分/" style="font-size: 19px; color: #777">二分</a> <a href="/tags/树链剖分/" style="font-size: 14px; color: #999">树链剖分</a> <a href="/tags/模拟/" style="font-size: 24px; color: #555">模拟</a> <a href="/tags/网络流/" style="font-size: 24px; color: #555">网络流</a>
     </div>
   </section>
 
@@ -982,7 +1003,6 @@
         jax: ["input/TeX", "output/HTML-CSS"],
         tex2jax: { 
             inlineMath: [ ["$","$"] ],  
-            // displayMath: [ ["$","$"] ],
             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         },
         "HTML-CSS": {

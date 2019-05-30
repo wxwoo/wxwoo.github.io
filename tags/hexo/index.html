@@ -317,7 +317,7 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       <p>在使用hexo博客和material-x等博客主题时，难免会遇到mathjax数学公式与markdown渲染冲突的问题。</p>
-<p>xaoxuu给出了解决方案，只需在<code>_config.yml</code>里加入<code>mathjax: true</code>即可解决，可以解决大量的mathjax冲突问题，但仍有部分复杂的公式渲染出现问题。</p>
+<p>xaoxuu给出了解决方案，只需在<code>_config.yml</code>里加入<code>mathjax: true</code>即可解决，可以解决大量的mathjax公式渲染，但仍有部分复杂的公式渲染出现问题。</p>
 <p>我在这里给出一种解决方案。</p>
 <p><em>注：部分资料来自互联网</em></p>
       
@@ -528,11 +528,11 @@
         
           <li><a class="flat-box" title="/categories/题解/" href="/categories/题解/"><div class="name">题解</div><div class="badge">(11)</div></a></li>
         
-          <li><a class="flat-box child" title="/categories/题解/SPOJ/" href="/categories/题解/SPOJ/"><div class="name">SPOJ</div><div class="badge">(2)</div></a></li>
+          <li><a class="flat-box child" title="/categories/题解/SPOJ/" href="/categories/题解/SPOJ/"><div class="name">SPOJ</div><div class="badge">(3)</div></a></li>
         
           <li><a class="flat-box child" title="/categories/题解/codeforces/" href="/categories/题解/codeforces/"><div class="name">codeforces</div><div class="badge">(3)</div></a></li>
         
-          <li><a class="flat-box child" title="/categories/题解/洛谷/" href="/categories/题解/洛谷/"><div class="name">洛谷</div><div class="badge">(6)</div></a></li>
+          <li><a class="flat-box child" title="/categories/题解/洛谷/" href="/categories/题解/洛谷/"><div class="name">洛谷</div><div class="badge">(5)</div></a></li>
         
       </ul>
     </div>
@@ -557,7 +557,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/material-x/" style="font-size: 14px; color: #999">material-x</a> <a href="/tags/mathjax/" style="font-size: 14px; color: #999">mathjax</a> <a href="/tags/二分/" style="font-size: 17.33px; color: #828282">二分</a> <a href="/tags/模拟/" style="font-size: 24px; color: #555">模拟</a> <a href="/tags/网络流/" style="font-size: 20.67px; color: #6c6c6c">网络流</a>
+      <a href="/tags/ST表/" style="font-size: 14px; color: #999">ST表</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/material-x/" style="font-size: 14px; color: #999">material-x</a> <a href="/tags/mathjax/" style="font-size: 14px; color: #999">mathjax</a> <a href="/tags/二分/" style="font-size: 19px; color: #777">二分</a> <a href="/tags/树链剖分/" style="font-size: 14px; color: #999">树链剖分</a> <a href="/tags/模拟/" style="font-size: 24px; color: #555">模拟</a> <a href="/tags/网络流/" style="font-size: 24px; color: #555">网络流</a>
     </div>
   </section>
 
@@ -857,7 +857,6 @@
         jax: ["input/TeX", "output/HTML-CSS"],
         tex2jax: { 
             inlineMath: [ ["$","$"] ],  
-            // displayMath: [ ["$","$"] ],
             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         },
         "HTML-CSS": {
