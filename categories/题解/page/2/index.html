@@ -322,7 +322,7 @@
 <p>看到题目就想到了<code>dfs+剪枝</code></p>
 <p>然后就想到了<code>dfs</code>有问题</p>
 <p>例如这组数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">4-9</span><br><span class="line">| |</span><br><span class="line">2-4-10</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">4-9-12</span><br><span class="line">| | |</span><br><span class="line">2-4-10</span><br></pre></td></tr></table></figure>
 <p>从4开始，到10结束</p>
 <p><code>dfs</code>会走$4 \to 2 \to 4 \to 10$，答案为8</p>
 <p>然而很明显走$4 \to 9 \to 4 \to 10$更优，答案为6</p>
