@@ -329,7 +329,7 @@
 <h2 id="2-更改配置"><a href="#2-更改配置" class="headerlink" title="2. 更改配置"></a>2. 更改配置</h2><p>找到<code>/node_modules/hexo-renderer-kramed/lib/renderer.js</code>，将<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatText</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Fit kramed's rule:  $$ + \1 + $$ </span></span><br><span class="line">    <span class="keyword">return</span> text.replace(<span class="regexp">/`\ $(.*?)\$ `/g</span>, <span class="string">' $$$$$ 1 $$$$ '</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>改为<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatText</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> text;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="3-修改数学包"><a href="#3-修改数学包" class="headerlink" title="3. 修改数学包"></a>3. 修改数学包</h2><p>在cmd中输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-math --save</span><br><span class="line">npm install hexo-renderer-mathjax --save</span><br></pre></td></tr></table></figure></p>
-<h2 id="4-更新mathjax配置文件"><a href="#4-更新mathjax配置文件" class="headerlink" title="4. 更新mathjax配置文件"></a>4. 更新mathjax配置文件</h2><p>找到<code>/node_modules/hexo-renderer-mathjax/mathjax.html</code>，将最下面那一行<code>&lt;script&gt;</code>注释掉，改成<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLCSS"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="4-更新mathjax配置文件"><a href="#4-更新mathjax配置文件" class="headerlink" title="4. 更新mathjax配置文件"></a>4. 更新mathjax配置文件</h2><p>找到<code>/node_modules/hexo-renderer-mathjax/mathjax.html</code>，将最下面那一行<code>&lt;script&gt;</code>注释掉，改成<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="5-修改转义规则"><a href="#5-修改转义规则" class="headerlink" title="5. 修改转义规则"></a>5. 修改转义规则</h2><p>因为markdown和mathjax语法有冲突，我们修改转义规则以避免冲突</p>
 <p>找到<code>\node_modules\kramed\lib\rules\inline.js</code>，将<code>escape</code>和<code>em</code>这两行注释掉，改成</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">escape</span>: <span class="regexp">/^\\([`*\[\]()# +\-.!_&gt;])/</span>,</span><br><span class="line"></span><br><span class="line">em: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br></pre></td></tr></table></figure>
@@ -347,10 +347,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-30T18:30:31+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-06-01T11:19:54+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2019年5月30日</p>
+    <p>最后更新于 2019年6月1日</p>
   </a>
 </div>
 
@@ -1028,19 +1028,16 @@
         jax: ["input/TeX", "output/HTML-CSS"],
         tex2jax: { 
             inlineMath: [ ["$","$"] ],  
+            displayMath: [ ["$","$"] ],
             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         },
         "HTML-CSS": {
             availableFonts: ["STIX", "TeX"]
         }
     });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub,mathId]);
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLCSS"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
