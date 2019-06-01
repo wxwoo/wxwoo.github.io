@@ -315,114 +315,6 @@
       
         
   <h2 class="title">
-    <a href="/2019/03/13/solution-cf743a/">
-      CF743A Vladik and flights 题解
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://wxwoo.github.io" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>wxwoo</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-03-13</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/categories/题解/codeforces/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>题解&nbsp;/&nbsp;codeforces</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p><a href="https://codeforces.com/problemset/problem/743/A" target="_blank" rel="noopener">原题目链接</a></p>
-<p>写这题翻译的时候，突然就有了思路</p>
-<p>实际上这题重在思考</p>
-<p>若a机场和b机场是同一家公司，输出0，这个很容易想到</p>
-<p>若a机场和b机场不是同一家公司，输出1，这是为什么呢？</p>
-      
-        <div class="readmore">
-          <a href="/2019/03/13/solution-cf743a/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/模拟/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>模拟</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
     <a href="/2019/03/13/solution-p1496/">
       P1496 火烧赤壁 题解
     </a>
@@ -509,6 +401,123 @@
       <div class="full-width auto-padding tags">
         
           <a href="/tags/模拟/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>模拟</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2019/03/13/solution-p2598/">
+      P2598 [ZJOI2009]狼和羊的故事 题解
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://wxwoo.github.io" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>wxwoo</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-03-13</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/题解/洛谷/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>题解&nbsp;/&nbsp;洛谷</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p><a href="https://www.luogu.org/problemnew/show/P2598" target="_blank" rel="noopener">原题目链接</a></p>
+<p>将狼和羊分成两个部分：<del>明显的</del>最小割</p>
+<p>根据<code>最大流最小割定理</code>，<code>最大流=最小割</code>，所以这题可以使用最大流算法求解</p>
+<p>我们将每个格子看成一个点，然后如下建边：</p>
+<blockquote>
+<ol>
+<li><p>原点向狼的领地连流量为inf的边</p>
+</li>
+<li><p>羊的领地向汇点连流量为inf的边</p>
+</li>
+<li><p>每个格子向上下左右四个格子连流量为1的边</p>
+</li>
+</ol>
+</blockquote>
+      
+        <div class="readmore">
+          <a href="/2019/03/13/solution-p2598/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/网络流/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>网络流</a>
         
       </div>
     
@@ -1172,7 +1181,7 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLCSS"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
