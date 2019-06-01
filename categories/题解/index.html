@@ -1245,8 +1245,8 @@
     <div class="article-entry" itemprop="articleBody">
       <p><a href="https://codeforces.com/problemset/problem/1108/A" target="_blank" rel="noopener">原题目链接</a></p>
 <p>我们可以取两条线段的中点，若重合就让第二条线段的中点+1</p>
-<p><code>Q:</code>中点+1后不在线段上怎么办？</p>
-<p><code>A:</code>由于<code>C++</code>整数除法自动省略小数，也就是向下取整，若线段长度为1，即<code>l+1=r</code>，那么$\left\lfloor\dfrac{l+r}{2}\right\rfloor=l$，所以<code>中点+1=r</code>，不会超出线段</p>
+<p>$Q:$中点+1后不在线段上怎么办？</p>
+<p>$A:$由于C++整数除法自动省略小数，也就是向下取整，若线段长度大于1，那么中点+1后一定不会超出线段，若线段长度为1，即$l+1=r$，那么$\left\lfloor\dfrac{l+r}{2}\right\rfloor=l$，所以中点$+1=r$，也不会超出线段，所以中点+1后无论如何都在线段上，符合题意</p>
       
         <div class="readmore">
           <a href="/2019/03/13/solution-cf1108a/" class="flat-box">
@@ -1931,8 +1931,8 @@
         extensions: ["tex2jax.js"],
         jax: ["input/TeX", "output/HTML-CSS"],
         tex2jax: { 
-            inlineMath: [ ["$","$"] ],  
             displayMath: [ ["$","$"] ],
+            inlineMath: [ ["$","$"] ],  
             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         },
         "HTML-CSS": {
