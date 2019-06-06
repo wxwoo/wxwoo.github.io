@@ -198,8 +198,8 @@
       
         
   <h2 class="title">
-    <a href="/2019/03/13/solution-cf743a/">
-      CF743A Vladik and flights 题解
+    <a href="/2019/03/13/solution-p3965/">
+      P3965 [TJOI2013]循环格 题解
     </a>
   </h2>
 
@@ -237,9 +237,9 @@
             
   
   <div class="new-meta-item category">
-    <a href="/categories/题解/codeforces/" rel="nofollow">
+    <a href="/categories/题解/洛谷/" rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>题解&nbsp;/&nbsp;codeforces</p>
+      <p>题解&nbsp;/&nbsp;洛谷</p>
     </a>
   </div>
 
@@ -266,14 +266,23 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p><a href="https://codeforces.com/problemset/problem/743/A" target="_blank" rel="noopener">原题目链接</a></p>
-<p>写这题翻译的时候，突然就有了思路</p>
-<p>实际上这题重在思考</p>
-<p>若a机场和b机场是同一家公司，输出0，这个很容易想到</p>
-<p>若a机场和b机场不是同一家公司，输出1，这是为什么呢？</p>
+      <p><a href="https://www.luogu.org/problemnew/show/P3965" target="_blank" rel="noopener">原题目链接</a></p>
+<p><del>洛谷随机跳题跳到的</del></p>
+<p>有指向，有修改，求最小：<del>明显的</del>最小费用最大流</p>
+<p>我们将每个格子看成一个点，然后拆点，如下建边：</p>
+<blockquote>
+<ol>
+<li><p>原点向每个点连边，流量为1，费用为0</p>
+</li>
+<li><p>每个点的拆点向汇点连边，流量为1，费用为0</p>
+</li>
+<li><p>每个点向四周的点连边，流量为1，默认指向费用为0，其他为1</p>
+</li>
+</ol>
+</blockquote>
       
         <div class="readmore">
-          <a href="/2019/03/13/solution-cf743a/" class="flat-box">
+          <a href="/2019/03/13/solution-p3965/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             阅读全文
           </a>
@@ -283,7 +292,7 @@
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/模拟/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>模拟</a>
+          <a href="/tags/网络流/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>网络流</a>
         
       </div>
     
