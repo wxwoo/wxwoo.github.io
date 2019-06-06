@@ -1007,7 +1007,10 @@
   <script>setLoadingBarProgress(100);</script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
-        TeX: { equationNumbers: { autoNumber: "AMS" } },
+        TeX: { 
+            equationNumbers: { autoNumber: "AMS" },
+            extensions: ["AMSmath.js", "AMSsymbols.js"]
+        },
         "HTML-CSS": {
             preferredFont: "TeX", 
             availableFonts: ["STIX", "TeX"]
