@@ -344,6 +344,21 @@
 	          </div>
 	      
 	          <div class="archive-item archive-post mark">
+	            <a href="/2019/03/13/solution-cf1108a/">
+	              <time>03-13</time>
+	              <span class="title">
+	                
+	                  CF1108A Two distinct points 题解
+	                
+	                
+	                
+									
+									
+	              </span>
+	            </a>
+	          </div>
+	      
+	          <div class="archive-item archive-post mark">
 	            <a href="/2019/03/13/solution-p2598/">
 	              <time>03-13</time>
 	              <span class="title">
@@ -359,11 +374,11 @@
 	          </div>
 	      
 	          <div class="archive-item archive-post mark">
-	            <a href="/2019/03/13/solution-p1496/">
+	            <a href="/2019/03/13/solution-sp733/">
 	              <time>03-13</time>
 	              <span class="title">
 	                
-	                  P1496 火烧赤壁 题解
+	                  SP733 MTWALK - Mountain Walking 题解
 	                
 	                
 	                
@@ -404,26 +419,11 @@
 	          </div>
 	      
 	          <div class="archive-item archive-post mark">
-	            <a href="/2019/03/13/solution-cf1108a/">
+	            <a href="/2019/03/13/solution-p1496/">
 	              <time>03-13</time>
 	              <span class="title">
 	                
-	                  CF1108A Two distinct points 题解
-	                
-	                
-	                
-									
-									
-	              </span>
-	            </a>
-	          </div>
-	      
-	          <div class="archive-item archive-post mark">
-	            <a href="/2019/03/13/solution-sp733/">
-	              <time>03-13</time>
-	              <span class="title">
-	                
-	                  SP733 MTWALK - Mountain Walking 题解
+	                  P1496 火烧赤壁 题解
 	                
 	                
 	                
@@ -977,30 +977,25 @@
 
   <script>setLoadingBarProgress(100);</script>
 <script type="text/x-mathjax-config">
-    let isMathjaxConfig = false;
-    const initMathjaxConfig = () => {
-        if (!window.MathJax) {
-             return;
+    MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+        "HTML-CSS": {
+            preferredFont: "TeX", 
+            availableFonts: ["STIX", "TeX"]
+        },
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: { 
+            inlineMath: [ ["$","$"] ],  
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'a']
         }
-        window.MathJax.Hub.Config({
-            extensions: ["tex2jax.js"],
-            jax: ["input/TeX", "output/HTML-CSS"],
-            tex2jax: { 
-                inlineMath: [ ["$","$"] ],  
-                skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            },
-            "HTML-CSS": {
-                availableFonts: ["STIX", "TeX"]
-            }
-        });
-        isMathjaxConfig = true;
-    };
-    if (isMathjaxConfig === false) { 
-        initMathjaxConfig();
-    }
-    window.MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLCSS"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
