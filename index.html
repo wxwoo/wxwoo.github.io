@@ -235,10 +235,6 @@
       
         
           
-        
-          
-        
-          
             
               <div class="post-wrapper">
                 <article class="post reveal ">
@@ -353,9 +349,140 @@
         
           
         
+          
+        
+          
+        
+          
+        
       
     
     
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2019/06/14/solution-sp2916/">
+      SP2916 GSS5 - Can you answer these queries V 题解
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://wxwoo.github.io" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>wxwoo</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-06-14</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/题解/SPOJ/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>题解&nbsp;/&nbsp;SPOJ</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p><a href="https://www.spoj.com/problems/GSS5/" target="_blank" rel="noopener">原题目链接</a></p>
+<p>前置知识：不带修区间最大子段和</p>
+<p>没做过请先右转<a href="https://www.spoj.com/problems/GSS1/" target="_blank" rel="noopener">GSS1</a></p>
+<p>这题比GSS1多了一个对左右端点的区间限制，GSS1的做法不再适用</p>
+<p>这时我们就要分两种情况讨论</p>
+<p>情况1：左右端点的区间不相交，即$[x_1,y_1]\cap[x_2,y_2]=\varnothing$</p>
+<p>此时$[y_1+1,x_2-1]$为必选区间，我们只能最大化$[x_1,y_1]$的后缀和和$[x_2,y_2]$的前缀和，加上$[y_1+1,x_2-1]$的和即为答案</p>
+<p>情况2：左右端点的区间相交<br>，即$[x_1,y_1]\cap[x_2,y_2]\ne\varnothing$</p>
+<p>设最终答案区间左右端点分别为$x_{ans},y_{ans}$</p>
+<p>此时答案分4种情况：</p>
+<ol>
+<li><p>$\{y_1,x_2\}\subsetneqq[x_{ans},y_{ans}]$</p>
+</li>
+<li><p>$\{y_1\}\subsetneqq[x_{ans},y_{ans}]$</p>
+</li>
+<li><p>$\{x_2\}\subsetneqq[x_{ans},y_{ans}]$</p>
+</li>
+<li><p>$\{y_1,x_2\}\nsubseteqq[x_{ans},y_{ans}]$</p>
+</li>
+</ol>
+<p>情况1即为刚才讨论的左右端点区间不相交的情况</p>
+<p>情况2可以最大化$[x_1,y_1]$的后缀和和$[y_1,y_2]$的前缀和求出</p>
+<p>情况3可以最大化$[x_1,x_2]$的后缀和和$[x_2,y_2]$的前缀和求出</p>
+<p>情况4即为求$[x_2,y_1]$的最大子段和</p>
+<p>答案即为这4种情况中的最大值</p>
+<p>不难发现，若情况1为最优，则情况1，2，3相等</p>
+<p>所以情况1可以通过情况2或3来求出</p>
+<p>代码如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ch=getchar();</span><br><span class="line">    T f=<span class="number">1</span>;</span><br><span class="line">    x=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!(<span class="string">'0'</span>&lt;=ch&amp;&amp;ch&lt;=<span class="string">'9'</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(ch==<span class="string">'-'</span>)</span><br><span class="line">            f=<span class="number">-1</span>;</span><br><span class="line">        ch=getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(<span class="string">'0'</span>&lt;=ch&amp;&amp;ch&lt;=<span class="string">'9'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch<span class="number">-48</span>;</span><br><span class="line">        ch=getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">50010</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sgttree</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> left,right,sum,ans;</span><br><span class="line">&#125;t[N&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> a[N];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ls(p) p&lt;&lt;1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rs(p) p&lt;&lt;1|1</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> sgttree <span class="title">pushup</span><span class="params">(sgttree ls,sgttree rs)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    sgttree tmp;</span><br><span class="line">    tmp.sum=ls.sum+rs.sum;</span><br><span class="line">    tmp.left=max(ls.left,ls.sum+rs.left);</span><br><span class="line">    tmp.right=max(rs.right,rs.sum+ls.right);</span><br><span class="line">    tmp.ans=max(max(ls.ans,rs.ans),ls.right+rs.left);</span><br><span class="line">    <span class="keyword">return</span> tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l==r)</span><br><span class="line">    &#123;</span><br><span class="line">        t[p].ans=t[p].sum=t[p].left=t[p].right=a[l];</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    build(ls(p),l,mid);</span><br><span class="line">    build(rs(p),mid+<span class="number">1</span>,r);</span><br><span class="line">    t[p]=pushup(t[ls(p)],t[rs(p)]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">sgttree <span class="title">query</span><span class="params">(<span class="keyword">int</span> ql,<span class="keyword">int</span> qr,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ql&gt;qr)</span><br><span class="line">        <span class="keyword">return</span> (sgttree)&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> t[p];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(qr&lt;=mid)</span><br><span class="line">        <span class="keyword">return</span> query(ql,qr,l,mid,ls(p));</span><br><span class="line">    <span class="keyword">if</span>(mid&lt;ql)</span><br><span class="line">        <span class="keyword">return</span> query(ql,qr,mid+<span class="number">1</span>,r,rs(p));</span><br><span class="line">    sgttree ls,rs;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=mid)</span><br><span class="line">        ls=query(ql,qr,l,mid,ls(p));</span><br><span class="line">    <span class="keyword">if</span>(mid&lt;qr)</span><br><span class="line">        rs=query(ql,qr,mid+<span class="number">1</span>,r,rs(p));</span><br><span class="line">    <span class="keyword">return</span> pushup(ls,rs);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> _;</span><br><span class="line">    read(_);</span><br><span class="line">    ++_;</span><br><span class="line">    <span class="keyword">while</span>(--_)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">memset</span>(t,<span class="number">0</span>,<span class="keyword">sizeof</span>(t));</span><br><span class="line">    	read(n);</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">    	    read(a[i]);</span><br><span class="line">    	build(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line">    	read(m);</span><br><span class="line">    	++m;</span><br><span class="line">    	<span class="keyword">int</span> ll,lr,rl,rr;</span><br><span class="line">    	<span class="keyword">while</span>(--m)</span><br><span class="line">    	&#123;</span><br><span class="line">    	    read(ll);</span><br><span class="line">    	    read(lr);</span><br><span class="line">    	    read(rl);</span><br><span class="line">    	    read(rr);</span><br><span class="line">    	    <span class="keyword">if</span>(lr&lt;rl)</span><br><span class="line">    	        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,query(lr+<span class="number">1</span>,rl<span class="number">-1</span>,<span class="number">1</span>,n,<span class="number">1</span>).sum+query(ll,lr,<span class="number">1</span>,n,<span class="number">1</span>).right+query(rl,rr,<span class="number">1</span>,n,<span class="number">1</span>).left);</span><br><span class="line">    	    <span class="keyword">else</span></span><br><span class="line">    	    &#123;</span><br><span class="line">    	        <span class="keyword">int</span> res=query(rl,lr,<span class="number">1</span>,n,<span class="number">1</span>).ans;</span><br><span class="line">    	        <span class="keyword">if</span>(ll&lt;rl)</span><br><span class="line">    	            res=max(res,query(ll,rl,<span class="number">1</span>,n,<span class="number">1</span>).right+query(rl,rr,<span class="number">1</span>,n,<span class="number">1</span>).left-a[rl]);</span><br><span class="line">    	        <span class="keyword">if</span>(rr&gt;lr)</span><br><span class="line">    	            res=max(res,query(ll,lr,<span class="number">1</span>,n,<span class="number">1</span>).right+query(lr,rr,<span class="number">1</span>,n,<span class="number">1</span>).left-a[lr]);</span><br><span class="line">    	        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,res);</span><br><span class="line">            &#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/线段树/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>线段树</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class="post-wrapper">
@@ -1034,8 +1161,8 @@
       
         
   <h2 class="title">
-    <a href="/2019/03/13/solution-cf1108a/">
-      CF1108A Two distinct points 题解
+    <a href="/2019/03/13/solution-cf743a/">
+      CF743A Vladik and flights 题解
     </a>
   </h2>
 
@@ -1102,13 +1229,14 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p><a href="https://codeforces.com/problemset/problem/1108/A" target="_blank" rel="noopener">原题目链接</a></p>
-<p>我们可以取两条线段的中点，若重合就让第二条线段的中点+1</p>
-<p>$Q:$中点+1后不在线段上怎么办？</p>
-<p>$A:$由于C++整数除法自动省略小数，也就是向下取整，若线段长度大于1，那么中点+1后一定不会超出线段，若线段长度为1，即$l+1=r$，那么$\left\lfloor\dfrac{l+r}{2}\right\rfloor=l$，所以中点$+1=r$，也不会超出线段，所以中点+1后无论如何都在线段上，符合题意</p>
+      <p><a href="https://codeforces.com/problemset/problem/743/A" target="_blank" rel="noopener">原题目链接</a></p>
+<p>写这题翻译的时候，突然就有了思路</p>
+<p>实际上这题重在思考</p>
+<p>若a机场和b机场是同一家公司，输出0，这个很容易想到</p>
+<p>若a机场和b机场不是同一家公司，输出1，这是为什么呢？</p>
       
         <div class="readmore">
-          <a href="/2019/03/13/solution-cf1108a/" class="flat-box">
+          <a href="/2019/03/13/solution-cf743a/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             阅读全文
           </a>
@@ -1141,8 +1269,8 @@
       
         
   <h2 class="title">
-    <a href="/2019/03/13/solution-p2598/">
-      P2598 [ZJOI2009]狼和羊的故事 题解
+    <a href="/2019/03/13/solution-p1496/">
+      P1496 火烧赤壁 题解
     </a>
   </h2>
 
@@ -1209,147 +1337,24 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p><a href="https://www.luogu.org/problemnew/show/P2598" target="_blank" rel="noopener">原题目链接</a></p>
-<p>将狼和羊分成两个部分：<del>明显的</del>最小割</p>
-<p>根据<code>最大流最小割定理</code>，<code>最大流=最小割</code>，所以这题可以使用最大流算法求解</p>
-<p>我们将每个格子看成一个点，然后如下建边：</p>
-<blockquote>
-<ol>
-<li><p>原点向狼的领地连流量为inf的边</p>
-</li>
-<li><p>羊的领地向汇点连流量为inf的边</p>
-</li>
-<li><p>每个格子向上下左右四个格子连流量为1的边</p>
-</li>
-</ol>
-</blockquote>
+      <p><a href="https://www.luogu.org/problemnew/show/P1496" target="_blank" rel="noopener">原题目链接</a></p>
+<p>蒟蒻提供一个思路：</p>
+<p>理论上，我们可以将<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    ________</span><br><span class="line">   |   __   |</span><br><span class="line">   |  |  |  |</span><br><span class="line">----------------&gt;</span><br><span class="line">   2  5  9  11</span><br></pre></td></tr></table></figure></p>
+<p>的重叠覆盖情况看成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    _____</span><br><span class="line">   |   __|__</span><br><span class="line">   |  |  |  |</span><br><span class="line">----------------&gt;</span><br><span class="line">   2  5  9  11</span><br></pre></td></tr></table></figure></p>
+<p>所以，若我们将起点和终点按照从小到大的顺序排序，对答案不会产生影响<br>
       
         <div class="readmore">
-          <a href="/2019/03/13/solution-p2598/" class="flat-box">
+          <a href="/2019/03/13/solution-p1496/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             阅读全文
           </a>
         </div>
       
-    </div>
+    </p></div>
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/网络流/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>网络流</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2019/03/13/solution-sp733/">
-      SP733 MTWALK - Mountain Walking 题解
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://wxwoo.github.io" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>wxwoo</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-03-13</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/categories/题解/SPOJ/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>题解&nbsp;/&nbsp;SPOJ</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p><a href="https://www.spoj.com/problems/MTWALK/" target="_blank" rel="noopener">原题目链接</a></p>
-<p>看到题目就想到了<code>dfs+剪枝</code></p>
-<p>然后就想到了<code>dfs</code>有问题</p>
-<p>例如这组数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">4-9-12</span><br><span class="line">| | |</span><br><span class="line">2-4-10</span><br></pre></td></tr></table></figure>
-<p>从4开始，到10结束</p>
-<p><code>dfs</code>会走$4 \to 2 \to 4 \to 10$，答案为8</p>
-<p>然而很明显走$4 \to 9 \to 4 \to 10$更优，答案为6</p>
-<p>当然你加一大堆玄学优化也是可以搜出正确答案的</p>
-<p>这里不再多讲，而是提供另一种思路：</p>
-<p><strong>二分</strong></p>
-      
-        <div class="readmore">
-          <a href="/2019/03/13/solution-sp733/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/二分/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>二分</a>
+          <a href="/tags/模拟/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>模拟</a>
         
       </div>
     
@@ -1555,9 +1560,9 @@
     <div class="content pure">
       <ul class="entry">
         
-          <li><a class="flat-box" title="/categories/题解/" href="/categories/题解/"><div class="name">题解</div><div class="badge">(11)</div></a></li>
+          <li><a class="flat-box" title="/categories/题解/" href="/categories/题解/"><div class="name">题解</div><div class="badge">(12)</div></a></li>
         
-          <li><a class="flat-box child" title="/categories/题解/SPOJ/" href="/categories/题解/SPOJ/"><div class="name">SPOJ</div><div class="badge">(3)</div></a></li>
+          <li><a class="flat-box child" title="/categories/题解/SPOJ/" href="/categories/题解/SPOJ/"><div class="name">SPOJ</div><div class="badge">(4)</div></a></li>
         
           <li><a class="flat-box child" title="/categories/题解/codeforces/" href="/categories/题解/codeforces/"><div class="name">codeforces</div><div class="badge">(3)</div></a></li>
         
@@ -1586,7 +1591,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/ST表/" style="font-size: 14px; color: #999">ST表</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/material-x/" style="font-size: 14px; color: #999">material-x</a> <a href="/tags/mathjax/" style="font-size: 14px; color: #999">mathjax</a> <a href="/tags/二分/" style="font-size: 19px; color: #777">二分</a> <a href="/tags/树链剖分/" style="font-size: 14px; color: #999">树链剖分</a> <a href="/tags/模拟/" style="font-size: 24px; color: #555">模拟</a> <a href="/tags/网络流/" style="font-size: 24px; color: #555">网络流</a>
+      <a href="/tags/ST表/" style="font-size: 14px; color: #999">ST表</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/material-x/" style="font-size: 14px; color: #999">material-x</a> <a href="/tags/mathjax/" style="font-size: 14px; color: #999">mathjax</a> <a href="/tags/二分/" style="font-size: 19px; color: #777">二分</a> <a href="/tags/树链剖分/" style="font-size: 14px; color: #999">树链剖分</a> <a href="/tags/模拟/" style="font-size: 24px; color: #555">模拟</a> <a href="/tags/线段树/" style="font-size: 14px; color: #999">线段树</a> <a href="/tags/网络流/" style="font-size: 24px; color: #555">网络流</a>
     </div>
   </section>
 
