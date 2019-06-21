@@ -334,11 +334,11 @@
 </blockquote>
 <p>经典的网络流问题，具体使用最小割求解。</p>
 <a id="more"></a>
-<p>根据<code>最大流最小割定理</code>，<code>最大流=最小割</code>，所以这题可以使用最大流算法求解</p>
+<p>根据<em>最大流最小割定理</em>，最大流=最小割，所以这题可以使用最大流算法求解</p>
 <p>我们将合影和人都看成一个点，然后如下建边：</p>
 <blockquote>
 <ol>
-<li><p>原点向合影连流量为利润的边</p>
+<li><p>源点向合影连流量为利润的边</p>
 </li>
 <li><p>人向汇点连流量为花费的边</p>
 </li>
@@ -347,10 +347,10 @@
 </ol>
 </blockquote>
 <p>接下来我们思考这样建边的正确性</p>
-<p>在最小割模型中，连一条流量为<code>inf</code>的边意为连一条不可割边 (这套路很常见的)</p>
+<p>在最小割模型中，连一条流量为$inf$的边意为连一条不可割边</p>
 <p>那么这个图中的可割边就只有合影和人了</p>
 <p>跑最大流（最小割）即为计算最优方案下的花费</p>
-<p>最终答案为全部合影能赚到的钱减去最小割（即为花费）</p>
+<p>最终答案（最大净利润）为全部合影能赚到的钱减去最小割</p>
 <p>代码如下</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">1e9</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">3e5</span>+<span class="number">1</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> from,to,next,cap,flow;</span><br><span class="line">&#125;e[N];</span><br><span class="line"><span class="keyword">int</span> cnt,n,m,sour,sink,head[N],ans,q[N],l[N],p[N];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i&lt;j?i:j;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[++cnt]=(edge)&#123;u,v,head[u],l,<span class="number">0</span>&#125;;</span><br><span class="line">    head[u]=cnt;</span><br><span class="line">    e[++cnt]=(edge)&#123;v,u,head[v],<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">    head[v]=cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">find</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(l,<span class="number">0</span>,<span class="keyword">sizeof</span>(l));</span><br><span class="line">    <span class="keyword">int</span> h=<span class="number">1</span>,t=<span class="number">1</span>;</span><br><span class="line">    q[<span class="number">1</span>]=sour;</span><br><span class="line">    l[sour]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(h&lt;=t)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> x=q[h++];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=head[x];i;i=e[i].next)</span><br><span class="line">            <span class="keyword">if</span>(!l[e[i].to]&amp;&amp;e[i].cap&gt;e[i].flow)</span><br><span class="line">            &#123;</span><br><span class="line">                q[++t]=e[i].to;</span><br><span class="line">                l[e[i].to]=l[x]+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(e[i].to==sink)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> now)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x==sink||!now)</span><br><span class="line">        <span class="keyword">return</span> now;</span><br><span class="line">    <span class="keyword">int</span> t=now,detla;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=head[x];i;i=e[i].next)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(e[i].cap&gt;e[i].flow&amp;&amp;l[e[i].to]==l[x]+<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            detla=dfs(e[i].to,min(t,e[i].cap-e[i].flow));</span><br><span class="line">            <span class="keyword">if</span>(!detla)</span><br><span class="line">                l[e[i].to]=<span class="number">0</span>;</span><br><span class="line">            e[i].flow+=detla;</span><br><span class="line">            e[((i<span class="number">-1</span>)^<span class="number">1</span>)+<span class="number">1</span>].flow-=detla;</span><br><span class="line">            t-=detla;</span><br><span class="line">            <span class="keyword">if</span>(t==<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> now-t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">dinic</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(find())</span><br><span class="line">        ans+=dfs(sour,inf);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> &amp;x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ch=getchar();</span><br><span class="line">    <span class="keyword">int</span> f=<span class="number">1</span>;</span><br><span class="line">    x=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!(<span class="string">'0'</span>&lt;=ch&amp;&amp;ch&lt;=<span class="string">'9'</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(ch==<span class="string">'-'</span>)</span><br><span class="line">            f=<span class="number">-1</span>;</span><br><span class="line">        ch=getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch<span class="number">-48</span>;</span><br><span class="line">        ch=getchar();</span><br><span class="line">    &#125;<span class="keyword">while</span>(<span class="string">'0'</span>&lt;=ch&amp;&amp;ch&lt;=<span class="string">'9'</span>);</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    read(m);</span><br><span class="line">    read(n);</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    sour=<span class="number">0</span>;</span><br><span class="line">    sink=m+n+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> val,x;</span><br><span class="line">        read(val);</span><br><span class="line">        res+=val;<span class="comment">//计算总收益</span></span><br><span class="line">        add(sour,i,val);</span><br><span class="line">        read(x);</span><br><span class="line">        <span class="keyword">while</span>(x!=<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            add(i,x+m,inf);</span><br><span class="line">            read(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=m+<span class="number">1</span>;i&lt;=n+m;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> val;</span><br><span class="line">        read(val);</span><br><span class="line">        add(i,sink,val);</span><br><span class="line">    &#125;</span><br><span class="line">    dinic();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,res-ans);<span class="comment">//ans即为总花费</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -367,10 +367,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-04-26T16:08:02+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-06-21T20:55:31+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2019年4月26日</p>
+    <p>最后更新于 2019年6月21日</p>
   </a>
 </div>
 
@@ -643,9 +643,9 @@
     <div class="content pure">
       <ul class="entry">
         
-          <li><a class="flat-box" title="/categories/题解/" href="/categories/题解/"><div class="name">题解</div><div class="badge">(12)</div></a></li>
+          <li><a class="flat-box" title="/categories/题解/" href="/categories/题解/"><div class="name">题解</div><div class="badge">(13)</div></a></li>
         
-          <li><a class="flat-box child" title="/categories/题解/SPOJ/" href="/categories/题解/SPOJ/"><div class="name">SPOJ</div><div class="badge">(4)</div></a></li>
+          <li><a class="flat-box child" title="/categories/题解/SPOJ/" href="/categories/题解/SPOJ/"><div class="name">SPOJ</div><div class="badge">(5)</div></a></li>
         
           <li><a class="flat-box child" title="/categories/题解/codeforces/" href="/categories/题解/codeforces/"><div class="name">codeforces</div><div class="badge">(3)</div></a></li>
         
@@ -674,7 +674,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/ST表/" style="font-size: 14px; color: #999">ST表</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/material-x/" style="font-size: 14px; color: #999">material-x</a> <a href="/tags/mathjax/" style="font-size: 14px; color: #999">mathjax</a> <a href="/tags/二分/" style="font-size: 19px; color: #777">二分</a> <a href="/tags/树链剖分/" style="font-size: 14px; color: #999">树链剖分</a> <a href="/tags/模拟/" style="font-size: 24px; color: #555">模拟</a> <a href="/tags/线段树/" style="font-size: 14px; color: #999">线段树</a> <a href="/tags/网络流/" style="font-size: 24px; color: #555">网络流</a>
+      <a href="/tags/ST表/" style="font-size: 14px; color: #999">ST表</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/material-x/" style="font-size: 14px; color: #999">material-x</a> <a href="/tags/mathjax/" style="font-size: 14px; color: #999">mathjax</a> <a href="/tags/二分/" style="font-size: 17.33px; color: #828282">二分</a> <a href="/tags/树链剖分/" style="font-size: 14px; color: #999">树链剖分</a> <a href="/tags/模拟/" style="font-size: 20.67px; color: #6c6c6c">模拟</a> <a href="/tags/线段树/" style="font-size: 14px; color: #999">线段树</a> <a href="/tags/网络流/" style="font-size: 24px; color: #555">网络流</a>
     </div>
   </section>
 
@@ -840,31 +840,6 @@
 
 
 
-  
-  
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
-    <script type="text/javascript">
-      $(function(){
-        if ('.cover') {
-          $('.cover').backstretch(
-          ["https://img.vim-cn.com/6d/a0c9e6f9efad8b731cb7376504bd10d79d2053.jpg"],
-          {
-            duration: "6000",
-            fade: "2500"
-          });
-        } else {
-          $.backstretch(
-          ["https://img.vim-cn.com/6d/a0c9e6f9efad8b731cb7376504bd10d79d2053.jpg"],
-          {
-            duration: "6000",
-            fade: "2500"
-          });
-        }
-      });
-    </script>
-  
-
 
 
 
@@ -1023,6 +998,10 @@
 
 
   <script>setLoadingBarProgress(100);</script>
+  <!--动态线条背景-->
+  <script type="text/javascript"
+  color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+  </script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         TeX: { 

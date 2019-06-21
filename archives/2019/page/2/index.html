@@ -248,8 +248,8 @@
       
         
   <h2 class="title">
-    <a href="/2019/03/13/solution-p2598/">
-      P2598 [ZJOI2009]狼和羊的故事 题解
+    <a href="/2019/03/13/solution-p3965/">
+      P3965 [TJOI2013]循环格 题解
     </a>
   </h2>
 
@@ -316,23 +316,23 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p><a href="https://www.luogu.org/problemnew/show/P2598" target="_blank" rel="noopener">原题目链接</a></p>
-<p>将狼和羊分成两个部分：<del>明显的</del>最小割</p>
-<p>根据<em>最大流最小割定理</em>，最大流=最小割，所以这题可以使用最大流算法求解</p>
-<p>我们将每个格子看成一个点，然后如下建边：</p>
+      <p><a href="https://www.luogu.org/problemnew/show/P3965" target="_blank" rel="noopener">原题目链接</a></p>
+<p><del>洛谷随机跳题跳到的</del></p>
+<p>有指向，有修改，求最小：<del>明显的</del>最小费用最大流</p>
+<p>我们将每个格子看成一个点，然后拆点，如下建边：</p>
 <blockquote>
 <ol>
-<li><p>原点向狼的领地连流量为inf的边</p>
+<li><p>源点向每个点连边，流量为1，费用为0</p>
 </li>
-<li><p>羊的领地向汇点连流量为inf的边</p>
+<li><p>每个点的拆点向汇点连边，流量为1，费用为0</p>
 </li>
-<li><p>每个格子向上下左右四个格子连流量为1的边</p>
+<li><p>每个点向四周的点连边，流量为1，默认指向费用为0，其他为1</p>
 </li>
 </ol>
 </blockquote>
       
         <div class="readmore">
-          <a href="/2019/03/13/solution-p2598/" class="flat-box">
+          <a href="/2019/03/13/solution-p3965/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             阅读全文
           </a>
@@ -343,6 +343,114 @@
       <div class="full-width auto-padding tags">
         
           <a href="/tags/网络流/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>网络流</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2019/03/13/solution-p1496/">
+      P1496 火烧赤壁 题解
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://wxwoo.github.io" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>wxwoo</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-03-13</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/题解/洛谷/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>题解&nbsp;/&nbsp;洛谷</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p><a href="https://www.luogu.org/problemnew/show/P1496" target="_blank" rel="noopener">原题目链接</a></p>
+<p>蒟蒻提供一个思路：</p>
+<p>理论上，我们可以将<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    ________</span><br><span class="line">   |   __   |</span><br><span class="line">   |  |  |  |</span><br><span class="line">----------------&gt;</span><br><span class="line">   2  5  9  11</span><br></pre></td></tr></table></figure></p>
+<p>的重叠覆盖情况看成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    _____</span><br><span class="line">   |   __|__</span><br><span class="line">   |  |  |  |</span><br><span class="line">----------------&gt;</span><br><span class="line">   2  5  9  11</span><br></pre></td></tr></table></figure></p>
+<p>所以，若我们将起点和终点按照从小到大的顺序排序，对答案不会产生影响<br>
+      
+        <div class="readmore">
+          <a href="/2019/03/13/solution-p1496/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </p></div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/模拟/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>模拟</a>
         
       </div>
     
@@ -586,8 +694,8 @@
       
         
   <h2 class="title">
-    <a href="/2019/03/13/solution-p3965/">
-      P3965 [TJOI2013]循环格 题解
+    <a href="/2019/03/13/solution-cf743a/">
+      CF743A Vladik and flights 题解
     </a>
   </h2>
 
@@ -625,9 +733,9 @@
             
   
   <div class="new-meta-item category">
-    <a href="/categories/题解/洛谷/" rel="nofollow">
+    <a href="/categories/题解/codeforces/" rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>题解&nbsp;/&nbsp;洛谷</p>
+      <p>题解&nbsp;/&nbsp;codeforces</p>
     </a>
   </div>
 
@@ -654,23 +762,14 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p><a href="https://www.luogu.org/problemnew/show/P3965" target="_blank" rel="noopener">原题目链接</a></p>
-<p><del>洛谷随机跳题跳到的</del></p>
-<p>有指向，有修改，求最小：<del>明显的</del>最小费用最大流</p>
-<p>我们将每个格子看成一个点，然后拆点，如下建边：</p>
-<blockquote>
-<ol>
-<li><p>原点向每个点连边，流量为1，费用为0</p>
-</li>
-<li><p>每个点的拆点向汇点连边，流量为1，费用为0</p>
-</li>
-<li><p>每个点向四周的点连边，流量为1，默认指向费用为0，其他为1</p>
-</li>
-</ol>
-</blockquote>
+      <p><a href="https://codeforces.com/problemset/problem/743/A" target="_blank" rel="noopener">原题目链接</a></p>
+<p>写这题翻译的时候，突然就有了思路</p>
+<p>实际上这题重在思考</p>
+<p>若a机场和b机场是同一家公司，输出0，这个很容易想到</p>
+<p>若a机场和b机场不是同一家公司，输出1，这是为什么呢？</p>
       
         <div class="readmore">
-          <a href="/2019/03/13/solution-p3965/" class="flat-box">
+          <a href="/2019/03/13/solution-cf743a/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             阅读全文
           </a>
@@ -680,7 +779,7 @@
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/网络流/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>网络流</a>
+          <a href="/tags/模拟/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>模拟</a>
         
       </div>
     
@@ -977,9 +1076,9 @@
     <div class="content pure">
       <ul class="entry">
         
-          <li><a class="flat-box" title="/categories/题解/" href="/categories/题解/"><div class="name">题解</div><div class="badge">(12)</div></a></li>
+          <li><a class="flat-box" title="/categories/题解/" href="/categories/题解/"><div class="name">题解</div><div class="badge">(13)</div></a></li>
         
-          <li><a class="flat-box child" title="/categories/题解/SPOJ/" href="/categories/题解/SPOJ/"><div class="name">SPOJ</div><div class="badge">(4)</div></a></li>
+          <li><a class="flat-box child" title="/categories/题解/SPOJ/" href="/categories/题解/SPOJ/"><div class="name">SPOJ</div><div class="badge">(5)</div></a></li>
         
           <li><a class="flat-box child" title="/categories/题解/codeforces/" href="/categories/题解/codeforces/"><div class="name">codeforces</div><div class="badge">(3)</div></a></li>
         
@@ -1008,7 +1107,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/ST表/" style="font-size: 14px; color: #999">ST表</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/material-x/" style="font-size: 14px; color: #999">material-x</a> <a href="/tags/mathjax/" style="font-size: 14px; color: #999">mathjax</a> <a href="/tags/二分/" style="font-size: 19px; color: #777">二分</a> <a href="/tags/树链剖分/" style="font-size: 14px; color: #999">树链剖分</a> <a href="/tags/模拟/" style="font-size: 24px; color: #555">模拟</a> <a href="/tags/线段树/" style="font-size: 14px; color: #999">线段树</a> <a href="/tags/网络流/" style="font-size: 24px; color: #555">网络流</a>
+      <a href="/tags/ST表/" style="font-size: 14px; color: #999">ST表</a> <a href="/tags/hexo/" style="font-size: 14px; color: #999">hexo</a> <a href="/tags/material-x/" style="font-size: 14px; color: #999">material-x</a> <a href="/tags/mathjax/" style="font-size: 14px; color: #999">mathjax</a> <a href="/tags/二分/" style="font-size: 17.33px; color: #828282">二分</a> <a href="/tags/树链剖分/" style="font-size: 14px; color: #999">树链剖分</a> <a href="/tags/模拟/" style="font-size: 20.67px; color: #6c6c6c">模拟</a> <a href="/tags/线段树/" style="font-size: 14px; color: #999">线段树</a> <a href="/tags/网络流/" style="font-size: 24px; color: #555">网络流</a>
     </div>
   </section>
 
@@ -1182,31 +1281,6 @@
 
 
 
-  
-  
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
-    <script type="text/javascript">
-      $(function(){
-        if ('.cover') {
-          $('.cover').backstretch(
-          ["https://img.vim-cn.com/6d/a0c9e6f9efad8b731cb7376504bd10d79d2053.jpg"],
-          {
-            duration: "6000",
-            fade: "2500"
-          });
-        } else {
-          $.backstretch(
-          ["https://img.vim-cn.com/6d/a0c9e6f9efad8b731cb7376504bd10d79d2053.jpg"],
-          {
-            duration: "6000",
-            fade: "2500"
-          });
-        }
-      });
-    </script>
-  
-
 
 
 
@@ -1335,6 +1409,10 @@
 
 
   <script>setLoadingBarProgress(100);</script>
+  <!--动态线条背景-->
+  <script type="text/javascript"
+  color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+  </script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         TeX: { 
