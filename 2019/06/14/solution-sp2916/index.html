@@ -331,6 +331,7 @@
 <p>没做过请先右转<a href="https://www.spoj.com/problems/GSS1/" target="_blank" rel="noopener">GSS1</a></p>
 <p>这题比GSS1多了一个对左右端点的区间限制，GSS1的做法不再适用</p>
 <p>这时我们就要分两种情况讨论</p>
+<a id="more"></a>
 <p>情况1：左右端点的区间不相交，即$[x_1,y_1]\cap[x_2,y_2]=\varnothing$</p>
 <p>此时$[y_1+1,x_2-1]$为必选区间，我们只能最大化$[x_1,y_1]$的后缀和和$[x_2,y_2]$的前缀和，加上$[y_1+1,x_2-1]$的和即为答案</p>
 <p>情况2：左右端点的区间相交<br>，即$[x_1,y_1]\cap[x_2,y_2]\ne\varnothing$</p>
@@ -365,10 +366,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-06-14T21:42:16+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-07-05T22:34:32+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2019年6月14日</p>
+    <p>最后更新于 2019年7月5日</p>
   </a>
 </div>
 
