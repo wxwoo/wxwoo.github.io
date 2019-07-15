@@ -247,9 +247,142 @@
         
           
         
+          
+        
       
     
     
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2019/07/10/solution-p4177/">
+      P4177 [CEOI2008]order 题解
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://wxwoo.github.io" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>wxwoo</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-07-10</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/题解/洛谷/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>题解&nbsp;/&nbsp;洛谷</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p><a href="https://www.luogu.org/problemnew/show/P4177" target="_blank" rel="noopener">原题目链接</a></p>
+<p>先无视租机器，<del>明显的</del>最大权闭合子图</p>
+<p>最大权闭合子图：</p>
+<blockquote>
+<p>给定一个有向图，点有点权，选择一个子图，满足子图上如果选择了一个点就必须选择它后继的所有点。最大化点权和。</p>
+</blockquote>
+<p>我们将机器和任务都看成一个点</p>
+<p>如果这题没有租机器，这题的建边方式就应该是这样：</p>
+<blockquote>
+<ol>
+<li><p>源点向订单连流量为利润的边</p>
+</li>
+<li><p>机器向汇点连流量为购买价格的边</p>
+</li>
+<li><p>每个订单向需要的机器连流量为inf的边</p>
+</li>
+</ol>
+</blockquote>
+<p>可以发现，源点连的边都是订单的利润，汇点连的边都是机器的成本，只有机器和订单之间的边是$inf$</p>
+<p>对于每个订单需要的相同机器，租用的价格也不一样</p>
+<p>所以我们考虑把$inf$换成租机器的费用</p>
+<p>从正确性的角度考虑，跑最大流（最小割）是计算最优方案下的成本，若总租借费用低于购买机器费用，表示购买费用的那条边就不会满流，防止购买机器反而增加成本；反之表示购买费用的那条边就会满流，限制住成本因多次租用同一机器而增加</p>
+<p>最终建边方式如下：</p>
+<blockquote>
+<ol>
+<li><p>源点向订单连流量为利润的边</p>
+</li>
+<li><p>机器向汇点连流量为购买价格的边</p>
+</li>
+<li><p>每个订单向需要的机器连流量为租用费用的边</p>
+</li>
+</ol>
+</blockquote>
+<p>代码如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ch=getchar();</span><br><span class="line">    T f=<span class="number">1</span>;</span><br><span class="line">    x=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!(<span class="string">'0'</span>&lt;=ch&amp;&amp;ch&lt;=<span class="string">'9'</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(ch==<span class="string">'-'</span>)</span><br><span class="line">            f=<span class="number">-1</span>;</span><br><span class="line">        ch=getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(<span class="string">'0'</span>&lt;=ch&amp;&amp;ch&lt;=<span class="string">'9'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch<span class="number">-48</span>;</span><br><span class="line">        ch=getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">1e9</span>,N=<span class="number">3e5</span>+<span class="number">1</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> from,to,nxt,cap,flow;</span><br><span class="line">&#125;e[N*<span class="number">20</span>];</span><br><span class="line"><span class="keyword">int</span> cnt,n,m,sour,sink,head[N],ans,q[N],l[N],p[N];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;u,<span class="keyword">const</span> <span class="keyword">int</span> &amp;v,<span class="keyword">const</span> <span class="keyword">int</span> &amp;f)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[++cnt]=(edge)&#123;u,v,head[u],f,<span class="number">0</span>&#125;;</span><br><span class="line">    head[u]=cnt;</span><br><span class="line">    e[++cnt]=(edge)&#123;v,u,head[v],<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">    head[v]=cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">find</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(l,<span class="number">0</span>,<span class="keyword">sizeof</span>(l));</span><br><span class="line">    <span class="keyword">int</span> h=<span class="number">1</span>,t=<span class="number">1</span>;</span><br><span class="line">    q[<span class="number">1</span>]=sour;</span><br><span class="line">    l[sour]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(h&lt;=t)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> x=q[h++];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=head[x];i;i=e[i].nxt)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(!l[e[i].to]&amp;&amp;e[i].cap&gt;e[i].flow)</span><br><span class="line">            &#123;</span><br><span class="line">                q[++t]=e[i].to;</span><br><span class="line">                l[e[i].to]=l[x]+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(e[i].to==sink)</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;x,<span class="keyword">const</span> <span class="keyword">int</span> &amp;now)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x==sink||!now)</span><br><span class="line">        <span class="keyword">return</span> now;</span><br><span class="line">    <span class="keyword">int</span> t=now,detla;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=head[x];i;i=e[i].nxt)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(e[i].cap&gt;e[i].flow&amp;&amp;l[e[i].to]==l[x]+<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            detla=dfs(e[i].to,min(t,e[i].cap-e[i].flow));</span><br><span class="line">            <span class="keyword">if</span>(!detla)</span><br><span class="line">                l[e[i].to]=<span class="number">0</span>;</span><br><span class="line">            e[i].flow+=detla;</span><br><span class="line">            e[((i<span class="number">-1</span>)^<span class="number">1</span>)+<span class="number">1</span>].flow-=detla;</span><br><span class="line">            t-=detla;</span><br><span class="line">            <span class="keyword">if</span>(t==<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> now-t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">dinic</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(find())</span><br><span class="line">        ans+=dfs(sour,inf);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    read(n);</span><br><span class="line">    read(m);</span><br><span class="line">    sour=<span class="number">0</span>;</span><br><span class="line">    sink=n+m+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> u,v,t,r,tot=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        read(v);</span><br><span class="line">        read(t);</span><br><span class="line">        add(sour,i,v);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=t;++j)</span><br><span class="line">        &#123;</span><br><span class="line">            read(u);</span><br><span class="line">            read(r);</span><br><span class="line">            add(i,u+n,r);</span><br><span class="line">        &#125;</span><br><span class="line">        tot+=v;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        read(v);</span><br><span class="line">        add(i+n,sink,v);</span><br><span class="line">    &#125;</span><br><span class="line">    dinic();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,tot-ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/网络流/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>网络流</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class="post-wrapper">
@@ -1000,13 +1133,13 @@
     <div class="content pure">
       <ul class="entry">
         
-          <li><a class="flat-box" title="/categories/题解/" href="/categories/题解/"><div class="name">题解</div><div class="badge">(13)</div></a></li>
+          <li><a class="flat-box" title="/categories/题解/" href="/categories/题解/"><div class="name">题解</div><div class="badge">(14)</div></a></li>
         
           <li><a class="flat-box child" title="/categories/题解/SPOJ/" href="/categories/题解/SPOJ/"><div class="name">SPOJ</div><div class="badge">(5)</div></a></li>
         
           <li><a class="flat-box child" title="/categories/题解/codeforces/" href="/categories/题解/codeforces/"><div class="name">codeforces</div><div class="badge">(3)</div></a></li>
         
-          <li><a class="flat-box child" title="/categories/题解/洛谷/" href="/categories/题解/洛谷/"><div class="name">洛谷</div><div class="badge">(5)</div></a></li>
+          <li><a class="flat-box child" title="/categories/题解/洛谷/" href="/categories/题解/洛谷/"><div class="name">洛谷</div><div class="badge">(6)</div></a></li>
         
       </ul>
     </div>
